@@ -15,3 +15,9 @@ def error_if_param_invalid(param, valid_param_l, custom_msg = None):
     
     if param not in valid_param_l:
         raise Exception(msg)
+    
+    
+    
+if __name__ == '__main__':
+    print('In Main:  exception_utils')
+    print('End of Main:  exception_utils')
