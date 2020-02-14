@@ -6,3 +6,5 @@ class ForbiddenParamValComboError(Exception): pass
 
 
 class ParamKeyNotInWhitelistError(Exception): pass
+
+class ParamTypeNotInWhitelistError(Exception): pass

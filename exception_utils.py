@@ -19,6 +19,17 @@ if util_submodule_import_check_count != len(util_submodule_l)    :    raise Exce
 ''' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ '''
 
 
+def error_if_param_type_not_in_whitelist(param, param_type_whitelist, custom_msg = None):
+    type_str = str(type(param)).split("'")[1]
+#     print(type_str)#```````````````````````````````````````````````````````````````````````````````````````````````````````
+    if type_str not in param_type_whitelist:
+        if custom_msg == None:
+            msg = "ERROR:  Invalid Param Type:  " + str(param) + " is type: " + str(type(param)) + ", must be one of: " + str(param_type_whitelist)
+        else:
+            msg = custom_msg
+            
+        raise ce.ParamTypeNotInWhitelistError(msg)
+
 
 
 
