@@ -31,7 +31,6 @@ def error_if_param_type_not_in_whitelist(param, param_type_whitelist, custom_msg
 
 
 
-
 def error_if_param_key_not_in_whitelist(param, param_key_whitelist, custom_msg = None):
     if custom_msg == None:
         msg = "ERROR:  Invalid Param:  " + str(param) + ", must be one of: " + str(param_key_whitelist)
