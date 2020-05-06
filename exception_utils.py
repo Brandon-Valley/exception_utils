@@ -18,40 +18,44 @@ import custom_exceptions as ce                                         ; util_su
 if util_submodule_import_check_count != len(util_submodule_l)    :    raise Exception("ERROR:  You probably added a local util_submodule import without adding it to the util_submodule_l")
 ''' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ '''
 
+''' Internal '''
+def get_msg(custom_msg, default_msg):    
+    if custom_msg == None:
+        return default_msg
+    else:
+        return custom_msg
+        
 
 def error_if_param_type_not_in_whitelist(param, param_type_whitelist, custom_msg = None):
     type_str = str(type(param)).split("'")[1]
     if type_str not in param_type_whitelist:
-        if custom_msg == None:
-            msg = "ERROR:  Invalid Param Type:  " + str(param) + " is type: " + str(type(param)) + ", must be one of: " + str(param_type_whitelist)
-        else:
-            msg = custom_msg
+                    
+        default_msg = "ERROR:  Invalid Param Type:  " + str(param) + " is type: " + str(type(param)) + ", must be one of: " + str(param_type_whitelist)            
+        msg = get_msg(custom_msg, default_msg)
             
         raise ce.ParamTypeNotInWhitelistError(msg)
 
 
 
 def error_if_param_key_not_in_whitelist(param, param_key_whitelist, custom_msg = None):
-    if custom_msg == None:
-        msg = "ERROR:  Invalid Param:  " + str(param) + ", must be one of: " + str(param_key_whitelist)
-    else:
-        msg = custom_msg
-     
     if param not in param_key_whitelist:
+        
+        default_msg = "ERROR:  Invalid Param:  " + str(param) + ", must be one of: " + str(param_key_whitelist)        
+        msg = get_msg(custom_msg, default_msg)
+         
         raise ce.ParamKeyNotInWhitelistError(msg)
     
 
 # ex:  path_ext_whitelist = [".git", ".png", ...]   
 # will treat no extension the same as a wrong extension 
 def error_if_path_ext_not_in_whitelist(path, path_ext_whitelist, custom_msg = None):
-    if custom_msg == None:
-        msg = "ERROR:  Invalid Path Extension:  " + str(path) + ", must end with one of: " + str(path_ext_whitelist)
-    else:
-        msg = custom_msg
-     
     extension = os.path.splitext(path)[1]
      
     if extension not in path_ext_whitelist:
+     
+        default_msg = "ERROR:  Invalid Path Extension:  " + str(path) + ", must end with one of: " + str(path_ext_whitelist)        
+        msg = get_msg(custom_msg, default_msg)
+        
         raise ce.PathExtensionNotInWhitelistError(msg)
     
      
