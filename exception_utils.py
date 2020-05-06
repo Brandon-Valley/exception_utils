@@ -43,7 +43,7 @@ def error_if_param_key_not_in_whitelist(param, param_key_whitelist, custom_msg =
         default_msg = "ERROR:  Invalid Param:  " + str(param) + ", must be one of: " + str(param_key_whitelist)        
         msg = get_msg(custom_msg, default_msg)
          
-        raise ce.ParamKeyNotInWhitelistError(msg)
+        raise ce.ParamKeyNotInWhitelistError(msg)   
     
 
 # ex:  path_ext_whitelist = [".git", ".png", ...]   
@@ -57,6 +57,33 @@ def error_if_path_ext_not_in_whitelist(path, path_ext_whitelist, custom_msg = No
         msg = get_msg(custom_msg, default_msg)
         
         raise ce.PathExtensionNotInWhitelistError(msg)
+    
+    
+def error_if_not_is_dir(path, custom_msg = None):
+    if not os.path.isdir(path):
+        
+        default_msg = 'ERROR:  Directory Does Not Exist:  "' + str(path) + '" must point to an existing directory.'        
+        msg = get_msg(custom_msg, default_msg)
+         
+        raise ce.DirNotExistError(msg)     
+    
+    
+def error_if_not_is_file(path, custom_msg = None):
+    if not os.path.isfile(path):
+        
+        default_msg = 'ERROR:  File Does Not Exist:  "' + str(path) + '" must point to an existing file.'        
+        msg = get_msg(custom_msg, default_msg)
+         
+        raise ce.FileNotExistError(msg)    
+    
+
+def error_if_not_is_file_or_is_dir(path, custom_msg = None):
+    if not (os.path.isfile(path) or os.path.isdir(path)):
+        
+        default_msg = 'ERROR:  FSU Object Does Not Exist:  "' + str(path) + '" must point to an existing file or directory."'        
+        msg = get_msg(custom_msg, default_msg)
+         
+        raise ce.FsuObjNotExistError(msg)      
     
      
 # raises exception if all keys == their values in param_combo_d    
@@ -78,6 +105,9 @@ def error_if_forbidden_param_val_combo(param_combo_d, reason = None, custom_msg 
         else:
             msg = custom_msg
         raise ce.ForbiddenParamValComboError(msg)
+    
+    
+    
          
      
      

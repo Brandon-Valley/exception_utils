@@ -8,4 +8,8 @@ class ParamKeyNotInWhitelistError(Exception): pass
 
 class PathExtensionNotInWhitelistError(Exception): pass
 
+class DirNotExistError(Exception): pass
+class FileNotExistError(Exception): pass
+class FsuObjNotExistError(Exception): pass
+
 class ParamTypeNotInWhitelistError(Exception): pass
