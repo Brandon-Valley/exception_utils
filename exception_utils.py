@@ -40,7 +40,20 @@ def error_if_param_key_not_in_whitelist(param, param_key_whitelist, custom_msg =
     if param not in param_key_whitelist:
         raise ce.ParamKeyNotInWhitelistError(msg)
     
- 
+
+# ex:  path_ext_whitelist = [".git", ".png", ...]   
+# will treat no extension the same as a wrong extension 
+def error_if_path_ext_not_in_whitelist(path, path_ext_whitelist, custom_msg = None):
+    if custom_msg == None:
+        msg = "ERROR:  Invalid Path Extension:  " + str(path) + ", must end with one of: " + str(path_ext_whitelist)
+    else:
+        msg = custom_msg
+     
+    extension = os.path.splitext(path)[1]
+     
+    if extension not in path_ext_whitelist:
+        raise ce.PathExtensionNotInWhitelistError(msg)
+    
      
 # raises exception if all keys == their values in param_combo_d    
 # {log_file_path : None, print_output : False}

@@ -4,7 +4,8 @@
 # parameter options you would like to protect against
 class ForbiddenParamValComboError(Exception): pass
 
-
 class ParamKeyNotInWhitelistError(Exception): pass
+
+class PathExtensionNotInWhitelistError(Exception): pass
 
 class ParamTypeNotInWhitelistError(Exception): pass
