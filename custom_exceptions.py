@@ -11,5 +11,8 @@ class PathExtensionNotInWhitelistError(Exception): pass
 class DirNotExistError(Exception): pass
 class FileNotExistError(Exception): pass
 class FsuObjNotExistError(Exception): pass
+class PathNotAbsError(Exception): pass
+class Not__File__Error(Exception): pass
+
 
 class ParamTypeNotInWhitelistError(Exception): pass

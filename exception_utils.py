@@ -96,15 +96,25 @@ def error_if_not_is_file_or_is_dir(path, custom_msg = None):
     
     
 def error_if_not_is_abs(path, custom_msg = None):
-
-
+    '''
+        Path does not need to exist, just needs to be abs
+    '''
     
     if not ut.is_abs(path):
-        default_msg = 'ERROR:  Path is Not ABS:  "' + str(path) + '" must point to an existing file or directory."'        
+        default_msg = 'ERROR:  Path is Not ABS:  "' + str(path) + '" does not need to exist, but it does need to be an absolute path."'        
         msg = ut.get_msg(custom_msg, default_msg)
          
-        raise ce.FsuObjNotExistError(msg)     
-        
+        raise ce.PathNotAbsError(msg)     
+
+
+def error_if_not__file__(path):
+    error_if_not_is_file              (path,          custom_msg = "ERROR: Can't be __file__ Because File Does Not Exist:  " + '"' + str(path) + '" must point to an existing file.')
+    error_if_path_ext_not_in_whitelist(path, ['.py'], custom_msg = "ERROR: Can't be __file__ Because Invalid Path Extension:  " + str(path) + ", must end with .py")  
+    error_if_not_is_abs               (path,          custom_msg = "ERROR: Can't be __file__ Because Path is Not ABS:  " + '"' + str(path) + '" needs to be an absolute path."')
+         
+     
+     
+     
      
 # raises exception if all keys == their values in param_combo_d    
 # {log_file_path : None, print_output : False}
