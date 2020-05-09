@@ -35,7 +35,7 @@ def is_abs(path):
     return os.path.isabs(path)
 
 ''' not protected so it works on files and urls - file.tcl will return ".tcl"  '''
-def get_extention(in_file_path):
+def get_extension(in_file_path):
     return os.path.splitext(in_file_path)[1]
 
 
