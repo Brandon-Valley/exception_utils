@@ -1,9 +1,9 @@
 if __name__ == "__main__": 
-    import   custom_exceptions as ce 
-    import   util_tools__eu    as ut
+    import        custom_exceptions as ce 
+    import        util_tools__eu    as ut
 else:
-    import . custom_exceptions as ce
-    import . util_tools__eu    as ut
+    from . import custom_exceptions as ce
+    from . import util_tools__eu    as ut
         
 
 
