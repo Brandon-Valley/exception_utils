@@ -20,8 +20,12 @@ if util_submodule_import_check_count != len(util_submodule_l)    :    raise Exce
 ''' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ '''
 
 
-
-
+if __name__ == "__main__": 
+    import   custom_exceptions as ce 
+    import   util_tools__eu    as ut
+else:
+    import . custom_exceptions as ce
+    import . util_tools__eu    as ut
         
 
 def error_if_param_type_not_in_whitelist(param, param_type_whitelist, custom_msg = None):
@@ -135,21 +139,11 @@ def error_if_forbidden_param_val_combo(param_combo_d, reason = None, custom_msg 
         else:
             msg = custom_msg
         raise ce.ForbiddenParamValComboError(msg)
-    
-    
-    
-         
-     
-     
-     
-     
-     
-     
-     
-     
-''' -- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -- All Utilities Standard Footer -- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -- '''
-sys.modules = og_sys_modules
-''' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ '''
+
+
+
+
+
 if __name__ == '__main__':
     print('In Main:  exception_utils')
 #     error_if_not_is_file(44)
